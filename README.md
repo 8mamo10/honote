@@ -14,3 +14,9 @@ $ npx create-next-app honote
 ✔ Would you like to customize the import alias (`@/*` by default)? … No / Yes
 ✔ What import alias would you like configured? … @/*
 ```
+
+```
+$ npx prisma init
+$ npx prisma migrate dev --name init
+$ npx prisma studio
+```
