@@ -20,3 +20,9 @@ $ npx prisma init
 $ npx prisma migrate dev --name init
 $ npx prisma studio
 ```
+
+```
+$ npm install next-auth@beta
+$ npx auth secret
+$ npm install @auth/prisma-adapter
+```
