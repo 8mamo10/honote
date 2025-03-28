@@ -26,3 +26,7 @@ $ npm install next-auth@beta
 $ npx auth secret
 $ npm install @auth/prisma-adapter
 ```
+
+```
+$ npm install hono @hono/zod-openapi
+```
