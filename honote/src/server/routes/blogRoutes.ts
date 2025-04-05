@@ -5,7 +5,6 @@ import {
   BlogsSchema,
   CreateBlogSchema,
 } from "../models/blogSchemas";
-import { create } from "domain";
 
 export const getBlogsRoute = createRoute({
   path: "/",
@@ -16,7 +15,7 @@ export const getBlogsRoute = createRoute({
       description: "OK",
       content: {
         "application/json": {
-          schema: BlogSchema,
+          schema: BlogsSchema,
         },
       },
     },
