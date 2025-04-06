@@ -22,11 +22,15 @@ $ npx prisma studio
 ```
 
 ```
-$ npm install next-auth@beta
+$ npm i next-auth@beta
 $ npx auth secret
-$ npm install @auth/prisma-adapter
+$ npm i @auth/prisma-adapter
 ```
 
 ```
-$ npm install hono @hono/zod-openapi
+$ npm i hono @hono/zod-openapi
+```
+
+```
+$ npm i @hono/swagger-ui
 ```
