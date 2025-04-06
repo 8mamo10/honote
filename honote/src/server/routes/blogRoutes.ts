@@ -49,7 +49,7 @@ export const getBlogByIdRoute = createRoute({
   },
 });
 
-export const CreateBlogRoute = createRoute({
+export const createBlogRoute = createRoute({
   path: "/",
   method: "post",
   description: "Create a blog",
