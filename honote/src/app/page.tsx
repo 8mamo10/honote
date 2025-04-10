@@ -1,5 +1,7 @@
 //src/app/page.tsx
 import { hono } from "@/lib/hono";
+import Link from "next/link";
+import Image from "next/image";
 
 export default async function Page() {
   const res = await hono.api.blogs.$get()
@@ -10,13 +12,40 @@ export default async function Page() {
   }
 
   return (
-    <div>
-      {blogs.map((blog) => (
-        <div key={blog.id}>
-          <h2>{blog.title}</h2>
-          <p>{blog.content}</p>
-        </div>
-      ))}
+    <div className="max-w-3xl mx-auto px-3 mt-6">
+      <h1 className="text-2xl font-bold text-center mb-6">Blog list</h1>
+      <div className="space-y-6">
+        {blogs.map((blog) => (
+          <div
+            key={blog.id}
+            className="bg-white shadow-md rounded-lg border border-gray-200 hover:shadow-lg transition duration-200"
+          >
+            <Link href={`/blogs/${blog.id}`} className="block w-full h-full p-4">
+              <h2 className="lg:text-xl text-lg font-semibold text-gray-800 mb-2">
+                {blog.title}
+              </h2>
+              <p className="text-gray-600 lg:text-md text-sm mb-4">
+                {blog.content}
+              </p>
+              <div className="flex items-center justify-between text-gray-600 text-sm">
+                <div className="flex items-center space-x-3">
+                  <Image
+                    src={blog.user.image as string}
+                    alt="icon"
+                    className="w-7 h-7 rounded-full border"
+                    width={28}
+                    height={28}
+                  />
+                  <p className="font-medium">{blog.user.name}</p>
+                </div>
+                <p className="text-gray-500">
+                  {new Date(blog.createdAt).toLocaleDateString()}
+                </p>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
