@@ -34,3 +34,7 @@ $ npm i hono @hono/zod-openapi
 ```
 $ npm i @hono/swagger-ui
 ```
+
+```
+$ npm i react-hook-form @hookform/resolvers
+```
