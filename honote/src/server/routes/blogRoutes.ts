@@ -82,7 +82,7 @@ export const deleteBlogByIdRoute = createRoute({
     params: BlogIdSchema,
   },
   responses: {
-    204: {
+    200: {
       description: "OK",
       content: {
         "application/json": {
