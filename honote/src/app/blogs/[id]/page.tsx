@@ -19,6 +19,22 @@ export default async function Page({ params }: Props) {
   const blog = await res.json()
 
   if (!blog) return notFound()
+  /*
+    const handleDelete = async () => {
+      if (window.confirm("Are you sure you want to delete this blog?")) {
+        const res = await hono.api.blogs[":id"].$delete({
+          param: {
+            id
+          }
+        })
+        if (res.status === 200) {
+          window.location.href = "/"
+        } else {
+          alert("Failed to delete the blog.")
+        }
+      }
+    }
+  */
 
   return (
     <div className="max-w-3xl mx-auto px-3 mt-6">
@@ -29,11 +45,11 @@ export default async function Page({ params }: Props) {
         ← Back to list
       </Link>
 
-      <div className="bg-white shadow-lg rounded-lg border border-gray-200 p-4">
+      <div className="bg-white shadow-lg rounded-lg border border-gray-200 p-4 relative">
         <h1 className="lg:text-xl text-lg font-bold text-gray-800 mb-4">{blog.title}</h1>
         <p className="text-gray-600 lg:text-md text-sm mb-6">{blog.content}</p>
 
-        <div className="flex items-center justify-between text-gray-600 text-sm">
+        <div className="flex items-center justify-between text-gray-600 text-sm mb-4">
           <div className="flex items-center space-x-3">
             <Image
               src={blog.user.image || ""}
@@ -50,6 +66,13 @@ export default async function Page({ params }: Props) {
             </div>
           </div>
         </div>
+
+        <button
+          //onClick={handleDelete}
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline absolute top-4 right-4"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
