@@ -1,4 +1,3 @@
-//src/app/page.tsx
 import Entry from "@/components/entry";
 import { hono } from "@/lib/hono";
 import { notFound } from "next/navigation";

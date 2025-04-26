@@ -1,4 +1,4 @@
-'use client'; // クライアントコンポーネントであることを明示
+'use client';
 
 import { hono } from "@/lib/hono";
 import Link from 'next/link';

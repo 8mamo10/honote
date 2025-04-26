@@ -1,4 +1,3 @@
-//src/app/blogs/new/page.tsx
 import { auth } from "@/auth";
 import NewForm from "@/components/newForm"
 
