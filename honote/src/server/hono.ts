@@ -3,10 +3,12 @@ import {
   createBlogRoute,
   getBlogByIdRoute,
   getBlogsRoute,
+  deleteBlogByIdRoute,
 } from "./routes/blogRoutes";
 import { getBlogsHandler } from "./controllers/getBlogs";
 import { getBlogByIdHandler } from "./controllers/getBlogById";
 import { createBlogHandler } from "./controllers/createBlog";
+import { deleteBlogHandler } from "./controllers/deleteBlog";
 import { swaggerUI } from "@hono/swagger-ui";
 
 export const app = new OpenAPIHono().basePath("/api");
@@ -14,7 +16,8 @@ export const app = new OpenAPIHono().basePath("/api");
 const blogApp = new OpenAPIHono()
   .openapi(getBlogsRoute, getBlogsHandler)
   .openapi(getBlogByIdRoute, getBlogByIdHandler)
-  .openapi(createBlogRoute, createBlogHandler);
+  .openapi(createBlogRoute, createBlogHandler)
+  .openapi(deleteBlogByIdRoute, deleteBlogHandler);
 
 export const route = app.route("/blogs", blogApp);
 
