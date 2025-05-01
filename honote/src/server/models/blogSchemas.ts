@@ -45,6 +45,19 @@ export const CreateBlogSchema = z.object({
   }),
 });
 
+export const UpdateBlogSchema = z.object({
+  id: z.number().openapi({
+    example: 1,
+  }),
+  title: z.string().min(1, { message: "No title" }).openapi({
+    example: "This is a title",
+  }),
+  content: z.string().min(1, { message: "No content" }).openapi({
+    example: "This is a content",
+  }),
+});
+
 export type User = z.infer<typeof UserSchema>;
 export type Blog = z.infer<typeof BlogSchema>;
 export type CreateBlog = z.infer<typeof CreateBlogSchema>;
+export type UpdateBlog = z.infer<typeof UpdateBlogSchema>;
