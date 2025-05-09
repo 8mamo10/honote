@@ -12,6 +12,7 @@ import { createBlogHandler } from "./controllers/createBlog";
 import { deleteBlogHandler } from "./controllers/deleteBlog";
 import { updateBlogHandler } from "./controllers/updateBlog";
 import { swaggerUI } from "@hono/swagger-ui";
+import { basicAuth } from "hono/basic-auth";
 
 export const app = new OpenAPIHono().basePath("/api");
 
@@ -28,6 +29,13 @@ app
   .doc("/specification", {
     openapi: "3.0.0",
     info: { title: "Honote API", version: "1.0.0" },
+  })
+  .use("/doc/*", async (c, next) => {
+    const auth = basicAuth({
+      username: process.env.API_DOC_BASIC_AUTH_USER!,
+      password: process.env.API_DOC_BASIC_AUTH_PASS!,
+    });
+    return auth(c, next);
   })
   .get("/doc", swaggerUI({ url: "/api/specification" }));
 
