@@ -41,6 +41,10 @@ export default function Entry({ blog }: BlogProps) {
     }
   };
 
+  const handleUpdate = () => {
+    router.push(`/blogs/edit/${blog.id}`);
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-3 mt-6">
       <Link
@@ -72,12 +76,20 @@ export default function Entry({ blog }: BlogProps) {
           </div>
         </div>
 
-        <button
-          onClick={handleDelete}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline absolute top-4 right-4"
-        >
-          Delete
-        </button>
+        <div className="absolute top-4 right-4 space-x-2">
+          <button
+            onClick={handleUpdate}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Update
+          </button>
+          <button
+            onClick={handleDelete}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
