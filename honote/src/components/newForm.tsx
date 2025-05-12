@@ -49,7 +49,7 @@ export default function Page() {
               render={({ field }) => (
                 <input
                   {...field}
-                  className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 text-black"
                   placeholder="Input title"
                 />
               )}
@@ -69,7 +69,7 @@ export default function Page() {
               render={({ field }) => (
                 <textarea
                   {...field}
-                  className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 h-32"
+                  className="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 h-32 text-black"
                   placeholder="Input content"
                 />
               )}
