@@ -42,7 +42,8 @@ export default function Entry({ blog }: BlogProps) {
   };
 
   const handleUpdate = () => {
-    router.push(`/blogs/edit/${blog.id}`);
+    //router.push(`/blogs/edit/${blog.id}`);
+    router.push('/blogs/new');
   };
 
   return (
