@@ -42,8 +42,7 @@ export default function Entry({ blog }: BlogProps) {
   };
 
   const handleUpdate = () => {
-    //router.push(`/blogs/edit/${blog.id}`);
-    router.push('/blogs/new');
+    router.push(`/blogs/edit/${blog.id}`);
     router.refresh();
   };
 
@@ -83,7 +82,7 @@ export default function Entry({ blog }: BlogProps) {
             onClick={handleUpdate}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Update
+            Edit
           </button>
           <button
             onClick={handleDelete}
