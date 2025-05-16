@@ -103,7 +103,7 @@ export const deleteBlogByIdRoute = createRoute({
 });
 
 export const updateBlogRoute = createRoute({
-  path: "/",
+  path: "/edit/{id}",
   method: "put",
   description: "Update a blog",
   request: {
