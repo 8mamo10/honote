@@ -4,6 +4,7 @@ import {
   BlogSchema,
   BlogsSchema,
   CreateBlogSchema,
+  UpdateBlogSchema,
 } from "../models/blogSchemas";
 
 export const getBlogsRoute = createRoute({
@@ -87,6 +88,39 @@ export const deleteBlogByIdRoute = createRoute({
       content: {
         "application/json": {
           schema: z.null(),
+        },
+      },
+    },
+    404: {
+      description: "Not found",
+      content: {
+        "application/json": {
+          schema: z.null(),
+        },
+      },
+    },
+  },
+});
+
+export const updateBlogRoute = createRoute({
+  path: "/edit/{id}",
+  method: "put",
+  description: "Update a blog",
+  request: {
+    body: {
+      content: {
+        "application/json": {
+          schema: UpdateBlogSchema,
+        },
+      },
+    },
+  },
+  responses: {
+    200: {
+      description: "OK",
+      content: {
+        "application/json": {
+          schema: BlogSchema,
         },
       },
     },
