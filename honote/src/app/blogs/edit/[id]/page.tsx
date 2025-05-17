@@ -2,14 +2,14 @@ import { auth } from "@/auth";
 import EditForm from "@/components/editForm"
 import { hono } from "@/lib/hono";
 import { notFound } from "next/navigation";
-interface PageProps {
-  params: {
-    id: string;
-  };
+
+
+type PageProps = {
+  params: Promise<{ id: string }>
 }
 
 export default async function Page({ params }: PageProps) {
-  const { id } = params;
+  const { id } = await params;
   const res = await hono.api.blogs[":id"].$get({
     param: {
       id
