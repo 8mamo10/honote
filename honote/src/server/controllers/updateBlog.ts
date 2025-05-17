@@ -8,9 +8,6 @@ export const updateBlogHandler: RouteHandler<typeof updateBlogRoute> = async (
 ) => {
   const idParam = c.req.param("id");
   const id = Number(idParam);
-  if (isNaN(id)) {
-    return c.json({ error: "Invalid blog ID" }, 400);
-  }
   const { title, content } = c.req.valid("json");
   const blog = await prisma.blog.findUnique({
     where: { id },
@@ -20,6 +17,7 @@ export const updateBlogHandler: RouteHandler<typeof updateBlogRoute> = async (
   }
 
   const session = await auth();
+
   if (!session?.user?.id) {
     throw Error("Authorization required.");
   }
