@@ -26,7 +26,7 @@ export const updateBlogHandler: RouteHandler<typeof updateBlogRoute> = async (
     throw Error("Invalid users.");
   }
 
-  const blogs = await prisma.blog.update({
+  const res = await prisma.blog.update({
     where: {
       id,
     },
@@ -44,5 +44,5 @@ export const updateBlogHandler: RouteHandler<typeof updateBlogRoute> = async (
       },
     },
   });
-  return c.json(blogs, 200);
+  return c.json(res, 200);
 };
