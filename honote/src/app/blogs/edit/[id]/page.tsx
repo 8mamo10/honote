@@ -1,7 +1,23 @@
 import { auth } from "@/auth";
 import EditForm from "@/components/editForm"
+import { hono } from "@/lib/hono";
+import { notFound } from "next/navigation";
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
 
-export default async function Page() {
+export default async function Page({ params }: PageProps) {
+  const { id } = params;
+  const res = await hono.api.blogs[":id"].$get({
+    param: {
+      id
+    }
+  })
+  const blog = await res.json()
+
+  if (!blog) return notFound()
 
   const session = await auth()
 
@@ -11,7 +27,13 @@ export default async function Page() {
 
   return (
     <div>
-      <EditForm />
+      <EditForm blog={{
+        ...blog,
+        id: String(blog.id),
+        title: blog.title || '',
+        content: blog.content || '',
+        createdAt: blog.createdAt || '',
+      }} />
     </div>
   );
 }

@@ -4,27 +4,46 @@ import { hono } from "@/lib/hono";
 import { UpdateBlog, UpdateBlogSchema } from "@/server/models/blogSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+interface UpdateFormProps {
+  blog: {
+    id: string;
+    title: string;
+    content: string;
+    createdAt: string;
+  };
+}
 
-export default function Page() {
+export default function Page({ blog }: UpdateFormProps) {
   const {
     control,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<UpdateBlog>({
     resolver: zodResolver(UpdateBlogSchema),
     defaultValues: {
-      id: 0,
-      title: "",
-      content: "",
+      id: Number(blog.id),
+      title: blog.title,
+      content: blog.content,
     },
   });
+
+  useEffect(() => {
+    reset({
+      id: Number(blog.id),
+      title: blog.title,
+      content: blog.content,
+    });
+  }, [blog, reset]);
 
   const router = useRouter()
 
   const onSubmit = async (data: UpdateBlog) => {
+    console.log("Submit", data);
 
-    await hono.api.blogs.edit[":id"].$put({
+    const res = await hono.api.blogs.edit[":id"].$put({
       json: {
         id: data.id,
         title: data.title,
@@ -35,6 +54,12 @@ export default function Page() {
       }
     })
 
+    if (!res.ok) {
+      alert("Failed to update blog");
+      return;
+    }
+
+    console.log("Blog updated successfully");
     router.push("/");
     router.refresh();
   };
