@@ -23,11 +23,17 @@ export default function Page() {
   const router = useRouter()
 
   const onSubmit = async (data: UpdateBlog) => {
-    const { id, title, content } = data;
 
-    await hono.api.blogs.$put({
-      json: { id, title, content },
-    });
+    await hono.api.blogs.edit[":id"].$put({
+      json: {
+        id: data.id,
+        title: data.title,
+        content: data.content,
+      },
+      param: {
+        id: String(data.id)
+      }
+    })
 
     router.push("/");
     router.refresh();
