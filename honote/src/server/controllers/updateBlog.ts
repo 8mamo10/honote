@@ -6,9 +6,14 @@ import { auth } from "@/auth";
 export const updateBlogHandler: RouteHandler<typeof updateBlogRoute> = async (
   c
 ) => {
-  const { id, title, content } = c.req.valid("json");
+  const idParam = c.req.param("id");
+  const id = Number(idParam);
+  if (isNaN(id)) {
+    return c.json({ error: "Invalid blog ID" }, 400);
+  }
+  const { title, content } = c.req.valid("json");
   const blog = await prisma.blog.findUnique({
-    where: { id: Number(id) },
+    where: { id },
   });
   if (!blog) {
     return c.json(null, 404);
