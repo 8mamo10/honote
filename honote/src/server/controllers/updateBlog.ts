@@ -22,6 +22,10 @@ export const updateBlogHandler: RouteHandler<typeof updateBlogRoute> = async (
     throw Error("Authorization required.");
   }
 
+  if (blog.userId !== session.user.id) {
+    throw Error("Invalid users.");
+  }
+
   const blogs = await prisma.blog.update({
     where: {
       id,
