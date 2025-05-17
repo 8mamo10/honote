@@ -14,6 +14,9 @@ export const getBlogsHandler: RouteHandler<typeof getBlogsRoute> = async (
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
   return c.json(blogs, 200);
 };
