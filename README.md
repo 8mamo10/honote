@@ -38,3 +38,7 @@ $ npm i @hono/swagger-ui
 ```
 $ npm i react-hook-form @hookform/resolvers
 ```
+
+```
+$ npm install --save-dev typescript ts-jest ts-node @types/jest jest
+```
