@@ -19,6 +19,11 @@ export const deleteBlogHandler: RouteHandler<
     throw Error("Authorization required.");
   }
 
+  if (blog.userId !== session?.user?.id) {
+    //return c.json(null, 403);
+    return c.json(null, 404);
+  }
+
   await prisma.blog.delete({
     where: { id: Number(id) },
   });
