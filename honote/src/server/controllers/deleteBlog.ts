@@ -20,8 +20,7 @@ export const deleteBlogHandler: RouteHandler<
   }
 
   if (blog.userId !== session?.user?.id) {
-    //return c.json(null, 403);
-    return c.json(null, 404);
+    return c.json(null, 403);
   }
 
   await prisma.blog.delete({

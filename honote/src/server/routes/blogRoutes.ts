@@ -91,6 +91,14 @@ export const deleteBlogByIdRoute = createRoute({
         },
       },
     },
+    403: {
+      description: "Forbidden",
+      content: {
+        "application/json": {
+          schema: z.null(),
+        },
+      },
+    },
     404: {
       description: "Not found",
       content: {
