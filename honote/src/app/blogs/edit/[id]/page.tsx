@@ -25,6 +25,11 @@ export default async function Page({ params }: PageProps) {
     return <div>Login</div>
   }
 
+  // Check if the current user is the author of the blog post
+  if (session.user?.id !== blog.userId) {
+    return <div>You are not authorized to edit this blog post</div>
+  }
+
   return (
     <div>
       <EditForm blog={{

@@ -18,9 +18,11 @@ interface BlogProps {
       image: string | null;
     };
   };
+  currentUserId: string | null;
 }
 
-export default function Entry({ blog }: BlogProps) {
+export default function Entry({ blog, currentUserId }: BlogProps) {
+  const isAuthor = currentUserId === blog.user.id;
   const router = useRouter();
 
   const handleDelete = async () => {
@@ -77,20 +79,22 @@ export default function Entry({ blog }: BlogProps) {
           </div>
         </div>
 
-        <div className="absolute top-4 right-4 space-x-2">
-          <button
-            onClick={handleUpdate}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Edit
-          </button>
-          <button
-            onClick={handleDelete}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Delete
-          </button>
-        </div>
+        {isAuthor && (
+          <div className="absolute top-4 right-4 space-x-2">
+            <button
+              onClick={handleUpdate}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Edit
+            </button>
+            <button
+              onClick={handleDelete}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Delete
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

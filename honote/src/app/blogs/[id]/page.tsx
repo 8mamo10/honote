@@ -1,4 +1,5 @@
 import Entry from "@/components/entry";
+import { auth } from "@/auth";
 import { hono } from "@/lib/hono";
 import { notFound } from "next/navigation";
 
@@ -18,18 +19,24 @@ export default async function Page({ params }: Props) {
 
   if (!blog) return notFound()
 
+  const session = await auth()
+  const currentUserId = session?.user?.id || null
+
   return (
     <div>
-      <Entry blog={{
-        ...blog,
-        id: String(blog.id),
-        user: {
-          id: blog.userId,
-          name: blog.user.name || 'Unknown User',
-          email: 'unknown@example.com',
-          image: blog.user.image || null,
-        }
-      }} />
+      <Entry
+        blog={{
+          ...blog,
+          id: String(blog.id),
+          user: {
+            id: blog.userId,
+            name: blog.user.name || 'Unknown User',
+            email: 'unknown@example.com',
+            image: blog.user.image || null,
+          }
+        }}
+        currentUserId={currentUserId}
+      />
     </div>
   );
 }
